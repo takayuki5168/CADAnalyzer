@@ -102,7 +102,7 @@ class CADAnalyzer():
                     ys = []
                     zs = []
                     for i in range(21):
-                        p = edge.valueAt(i * 1.0 / 20.0 * 3.14 * 2)
+                        p = edge.valueAt(edge.FirstParameter + (edge.LastParameter - edge.FirstParameter) * i * 1.0 / 20.0)
                         xs.append(p[0])
                         ys.append(p[1])
                         zs.append(p[2])
@@ -125,7 +125,7 @@ class CADAnalyzer():
                     ys = []
                     zs = []
                     for i in range(21):
-                        p = edge.valueAt(i * 1.0 / 20.0 * 3.14 * 2)
+                        p = edge.valueAt(edge.FirstParameter + (edge.LastParameter - edge.FirstParameter) * i * 1.0 / 20.0)
                         xs.append(p[0])
                         ys.append(p[1])
                         zs.append(p[2])
@@ -135,12 +135,16 @@ class CADAnalyzer():
                     p1 = edge.Vertexes[1].Point
                     ax.plot([p0[0], p1[0]], [p0[1], p1[1]], [p0[2], p1[2]], color="#ff0000")
         plt.show()
+
+    # TODO
+    def plot_face(self):
+        pass
     
 def main():
     signal.signal(signal.SIGINT, lambda signal, frame: sys.exit(0))
 
     cad_analyzer = CADAnalyzer()
-    cad_analyzer.read_file("../models/test2.STEP")
+    cad_analyzer.read_file("../models/mage1.STEP")
 
     embed()
 
