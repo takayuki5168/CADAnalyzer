@@ -29,7 +29,8 @@ $ pip install -r requirements.txt
 ```
 - Execute
 ```
-$ python scripts/cad_analyzer.py -m models/sample.STEP
+$ python scripts/cad_analyzer.py -m models/sample.STEP -i
+In [1]: ca.plot_edge()
 ```
 
 ### Use from Python

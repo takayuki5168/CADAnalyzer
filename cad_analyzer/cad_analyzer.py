@@ -143,8 +143,8 @@ def main(model_path, ipython, debug_print):
     signal.signal(signal.SIGINT, lambda signal, frame: sys.exit(0))
 
     # init cad_analyzer and read CAD model
-    cad_analyzer = CADAnalyzer(debug_print)
-    cad_analyzer.read_file(model_path)
+    ca = CADAnalyzer(debug_print)
+    ca.read_file(model_path)
 
     # execute ipython
     if ipython:
