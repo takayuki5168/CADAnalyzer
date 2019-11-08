@@ -151,7 +151,7 @@ def main():
     cad_analyzer = CADAnalyzer()
     cad_analyzer.read_file(model_path)#"../models/sample.STEP")
 
-    embed()
+    #embed()
 
 if __name__ == "__main__":
     main()

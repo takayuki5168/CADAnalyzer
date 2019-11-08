@@ -11,16 +11,23 @@ We can do with this library
 - extract edges, vertetexes, faces
 - plot edges, vertetexes, faces in 3D
 
-
+### Requirements
+- Python2
+    - Python3 is not supported
+    
 ### Installation
 - Install `FreeCAD`
 ```
 $ sudo apt-get install freecad
-$ sudo pip install matplotlib
-$ sudo pip install ipython
+```
+- Install python packages of `matplotlib`, `ipython`
+```
+$ pip install -r requirements.txt
 ```
 
 ### Usage
 ```
+$ git clone https://github.com/takayuki5168/CADAnalyzer
+$ cd CADAnalyzer
 $ python scripts/cad_analyzer.py
 ```
