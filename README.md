@@ -16,6 +16,8 @@ We can do with this library
 - Install `FreeCAD`
 ```
 $ sudo apt-get install freecad
+$ sudo pip install matplotlib
+$ sudo pip install ipython
 ```
 
 ### Usage

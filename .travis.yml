@@ -7,6 +7,7 @@ python:
 install:
   - sudo apt-get install freecad
   - pip install matplotlib
+  - pip install ipython
 
 script:
   - python scripts/cad_analyzer.py
