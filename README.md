@@ -15,19 +15,35 @@ We can do with this library
 - Python2
     - Python3 is not supported
     
-### Installation
-- Install `FreeCAD`
+- FreeCAD
 ```
 $ sudo apt-get install freecad
 ```
-- Install python packages of `matplotlib`, `ipython`
-```
-$ pip install -r requirements.txt
-```
 
-### Usage
+### Use from Command
+- Install python packages of `matplotlib`, `ipython`
 ```
 $ git clone https://github.com/takayuki5168/CADAnalyzer
 $ cd CADAnalyzer
-$ python scripts/cad_analyzer.py
+$ pip install -r requirements.txt
 ```
+- Execute
+```
+$ python scripts/cad_analyzer.py -m models/sample.STEP
+```
+
+### Use from Python
+- Install CADAnalyzer package
+```
+$ git clone https://github.com/takayuki5168/CADAnalyzer
+$ cd CADAnalyzer
+$ pip install --user .
+```
+
+- Execute
+```
+$ ipython
+In [1]: from cad_analyzer import CADAnalyzer
+In [2]: ca = CADAnalyzer()
+In [3]: ca.read_file("models/sample.STEP")
+In [4]: ca.plot_edge()
