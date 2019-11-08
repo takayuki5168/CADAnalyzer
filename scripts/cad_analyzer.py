@@ -12,6 +12,8 @@ from mpl_toolkits.mplot3d import Axes3D
 from IPython import embed
 from IPython.terminal.embed import InteractiveShellEmbed
 
+import os
+
 class CADAnalyzer():
     def __init__(self):
         self.shape = Part.Shape()
@@ -143,8 +145,11 @@ class CADAnalyzer():
 def main():
     signal.signal(signal.SIGINT, lambda signal, frame: sys.exit(0))
 
+    data_dir = os.path.abspath(os.path.dirname(__file__))
+    model_path = os.path.join(data_dir, '../models/sample.STEP')
+
     cad_analyzer = CADAnalyzer()
-    cad_analyzer.read_file("../models/mage1.STEP")
+    cad_analyzer.read_file(model_path)#"../models/sample.STEP")
 
     embed()
 
