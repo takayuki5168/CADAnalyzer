@@ -1,8 +1,10 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import sys, signal
 import math
+import os
+import argparse
+
 sys.path.append("/usr/lib/freecad/lib")
 import FreeCAD, Part
 
@@ -12,12 +14,10 @@ from mpl_toolkits.mplot3d import Axes3D
 from IPython import embed
 from IPython.terminal.embed import InteractiveShellEmbed
 
-import os
-
 class CADAnalyzer():
-    def __init__(self):
+    def __init__(self, _debug_print=False):
         self.shape = Part.Shape()
-        self.debug_print = True
+        self.debug_print = _debug_print
         self.epsilon = 1e-04
 
     def error(self):
@@ -76,7 +76,7 @@ class CADAnalyzer():
             if shell_indexes != None and shell_index not in shell_indexes:
                 continue
             for vertex_index in range(len(self.shape.Shells[shell_index].Vertexes)):
-                if vertex_indexes != None and vertex_index not in vertex_indexes:
+                if vertex_indexes != None and vertex_index not in vertex_indexes[shell_indexes.index(shell_index)]:
                     continue
                 vertex = self.shape.Shells[shell_index].Vertexes[vertex_index]
                 x.append(vertex.Point[0])
@@ -119,7 +119,7 @@ class CADAnalyzer():
             if shell_indexes != None and shell_index not in shell_indexes:
                 continue
             for edge_index in range(len(self.shape.Shells[shell_index].Edges)):
-                if edge_indexes != None and edge_index not in edge_indexes:
+                if edge_indexes != None and edge_index not in edge_indexes[shell_indexes.index(shell_index)]:
                     continue
                 edge = self.shape.Shells[shell_index].Edges[edge_index]
                 if self.is_circular_edge(edge):
@@ -138,20 +138,25 @@ class CADAnalyzer():
                     ax.plot([p0[0], p1[0]], [p0[1], p1[1]], [p0[2], p1[2]], color="#ff0000")
         plt.show()
 
-    # TODO
-    def plot_face(self):
-        pass
-    
-def main():
+def main(model_path, ipython, debug_print):
+    # set sigint handler
     signal.signal(signal.SIGINT, lambda signal, frame: sys.exit(0))
 
-    data_dir = os.path.abspath(os.path.dirname(__file__))
-    model_path = os.path.join(data_dir, '../models/sample.STEP')
+    # init cad_analyzer and read CAD model
+    cad_analyzer = CADAnalyzer(debug_print)
+    cad_analyzer.read_file(model_path)
 
-    cad_analyzer = CADAnalyzer()
-    cad_analyzer.read_file(model_path)#"../models/sample.STEP")
-
-    #embed()
+    # execute ipython
+    if ipython:
+        embed()
 
 if __name__ == "__main__":
-    main()
+    # parse argument
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-m", "--model-path")
+    parser.add_argument("-i", "--ipython", action='store_true')
+    parser.add_argument("-d", "--debug-print", action='store_true')
+    args = parser.parse_args()
+
+    # execute main function
+    main(model_path=os.getcwd()+"/"+args.model_path, ipython=args.ipython, debug_print=args.debug_print)

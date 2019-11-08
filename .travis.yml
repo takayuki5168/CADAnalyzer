@@ -5,11 +5,11 @@ python:
 
 install:
   - sudo apt-get install freecad
-  - pip install -r requirements.txt
+  - pip install setuptools wheel
+  - python setup.py develop
 
 script:
-  - python scripts/cad_analyzer.py
-
+  - python scripts/cad_analyzer.py -m models/sample.STEP
 
 sudo: false
 
