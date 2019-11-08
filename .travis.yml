@@ -5,7 +5,7 @@ python:
   - "3.6"
 
 install:
-  - pip install FreeCAD
+  - sudo apt-get install freecad
 
 script:
   - python scripts/cad_analyzer.py
