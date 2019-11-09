@@ -5,7 +5,7 @@ CAD Analyzer
 
 Library for analyzing CAD data (STEP) with FreeCAD
 
-![sample1](figs/sample1.png)
+![sample1](https://github.com/takayuki5168/CADAnalyzer/blob/master/figs/sample1.png)
 
 We can do with this library
 - extract edges, vertetexes, faces
