@@ -23,7 +23,7 @@ class CADAnalyzer():
     def error(self):
         print("[Error] Error has occurred.")
         sys.exit(0)
-        
+
     def is_epsilon(self, val):
         if abs(val) < self.epsilon:
             return True
@@ -48,7 +48,7 @@ class CADAnalyzer():
             return True
         except:
             return False
-    
+
     def plot_vertex(self, shell_indexes=None, vertex_indexes=None, with_all=False):
         fig = plt.figure()
         ax = Axes3D(fig)
@@ -65,7 +65,7 @@ class CADAnalyzer():
                 x_all.append(vertex.Point[0])
                 y_all.append(vertex.Point[1])
                 z_all.append(vertex.Point[2])
-                
+
             ax.scatter(x_all, y_all, z_all, color="#0000ff")
 
         # vertexes of indexes
@@ -83,7 +83,7 @@ class CADAnalyzer():
                 y.append(vertex.Point[1])
                 z.append(vertex.Point[2])
         ax.scatter(x, y, z, color="#ff0000")
-        
+
         plt.show()
 
     def plot_edge(self, shell_indexes=None, edge_indexes=None, with_all=False):
@@ -99,7 +99,7 @@ class CADAnalyzer():
             y_all = []
             z_all = []
             for edge in self.shape.Edges:
-                if self.is_circular_edge(edge):                
+                if self.is_circular_edge(edge):
                     xs = []
                     ys = []
                     zs = []
