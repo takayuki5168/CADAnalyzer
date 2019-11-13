@@ -6,7 +6,8 @@ python:
 install:
   - sudo apt-get install freecad
   - pip install --upgrade pip setuptools wheel
-  - python setup.py develop
+  - pip install matplotlib ipython argparse
+#  - python setup.py develop
 
 script:
   - python scripts/cad_analyzer.py -m models/sample.STEP
