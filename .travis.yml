@@ -10,7 +10,7 @@ install:
 #  - python setup.py develop
 
 script:
-  - python scripts/cad_analyzer.py -m models/sample.STEP
+  - python cad_analyzer/cad_analyzer.py -m models/sample.STEP
 
 sudo: false
 
